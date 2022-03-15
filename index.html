@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Warcounter</title>
+  <script>
+    const d = new Date(2022, 01, 24, 5, 0, 0, 0);
+
+    function doClock() {
+      n = Date.now();
+      time_difference = n - d.getTime();
+      days_difference = time_difference / (1000 * 60 * 60 * 24);
+      document.getElementById("demo").innerHTML = days_difference.toFixed(1);
+    }
+  </script>
+</head>
+
+<body onload="setInterval('doClock()', 100);">
+  <p align="center">
+    <img align="center" src="https://vectorflags.s3.amazonaws.com/flags/ua-wave-01.png" alt="UAFlag" height="142">
+  </p>
+  <h1 id="demo" align="center">  </h1>
+  <h2 align="center">days have passed since the beginning of the war!</h2>
+
+</body>
+
+</html>
