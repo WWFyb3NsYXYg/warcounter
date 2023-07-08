@@ -1,26 +1,87 @@
+<!DOCTYPE html>
 <html>
-
 <head>
-	<title>Warcounter</title>
-  <script>
-    const d = new Date(2022, 01, 24, 5, 0, 0, 0);
+  <title>Warcounter - Day counter since the beginning of the war in Ukraine</title>
+  <style>
 
-    function doClock() {
-      n = Date.now();
-      time_difference = n - d.getTime();
-      days_difference = time_difference / (1000 * 60 * 60 * 24);
-      document.getElementById("demo").innerHTML = days_difference.toFixed(1);
+    @font-face {
+  font-family: 'e-Ukraine';
+  src: url('res/fonts/e-Ukraine.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+    body {
+      backdrop-filter: blur(2px);
+      font-family: Arial, sans-serif;
+      background: url('res/img/war_map.webp') center center no-repeat fixed;
+      background-size: calc(100% - 50px);
+      padding: 50px;
+
+      background-color: #2d2a26;
+
+
+      margin: 0;
+      padding: 0;
     }
-  </script>
+
+    h1 {
+      font-family: 'e-Ukraine';
+      text-align: center;
+      color: #ffffff;
+    }
+
+    h3 {
+      font-family: 'e-Ukraine';
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .counter-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .counter {
+      font-family: 'e-Ukraine';
+      font-size: 48px;
+      color: #FF0000;
+    }
+
+    .flag {
+      display: block;
+      max-width: 100px;
+      margin: 0 auto;
+    }
+
+    }
+  </style>
 </head>
+<body>
+  <h1>Day counter since the beginning of the war in Ukraine</h1>
+  <div class="counter-container">
+    <img class="flag" src="res/img/Ukraine_animated_flag.gif" alt="Флаг Украины">
+    <p class="counter" id="counter"></p>
+  <h3>days have passed since the beginning of the war!<h3>
 
-<body onload="setInterval('doClock()', 100);">
-  <p align="center">
-    <img align="center" src="https://vectorflags.s3.amazonaws.com/flags/ua-wave-01.png" alt="UAFlag" height="142">
-  </p>
-  <h1 id="demo" align="center">  </h1>
-  <h2 align="center">days have passed since the beginning of the war!</h2>
+  <script>
+    // Дата начала войны
+    var startDate = new Date('2022-02-24');
 
+    // Функция для вычисления количества дней
+    function calculateDays() {
+      var currentDate = new Date();
+      var timeDiff = Math.abs(currentDate.getTime() - startDate.getTime());
+      var daysPassed = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+      return daysPassed;
+    }
+
+    // Обновление счетчика каждую секунду
+    setInterval(function() {
+      var counterElement = document.getElementById('counter');
+      counterElement.textContent = calculateDays();
+    }, 1000);
+  </script>
 </body>
-
 </html>
